@@ -6,7 +6,8 @@
     <title>AdminLTE 3 | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('js/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- icheck bootstrap -->
@@ -34,11 +35,17 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
+                    <div class="input-group">
+                        <input type="password" class="form-control pwd" id="login_password" placeholder="Password"
+                               name="password" required>
+                        <span class="input-group-btn" id="eyeSlash">
+       <button class="btn btn-default reveal" onclick="visibility()" type="button"><i class="fa fa-eye-slash"
+           ></i></button>
+     </span>
+                        <span class="input-group-btn" id="eyeShow" style="display: none;">
+       <button class="btn btn-default reveal" onclick="visibility()" type="button"><i class="fa fa-eye"
+           ></i></button>
+     </span>
                     </div>
                 </div>
                 <div class="row">
@@ -54,6 +61,7 @@
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                     </div>
+
                     <!-- /.col -->
                 </div>
             </form>
@@ -87,5 +95,18 @@
 <script src="{{ asset('js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
+<script>
+    function visibility() {
+        var x = document.getElementById('login_password');
+        if (x.type === 'password') {
+            x.type = "text";
+            $('#eyeShow').show();
+            $('#eyeSlash').hide();
+        } else {
+            x.type = "password";
+            $('#eyeShow').hide();
+            $('#eyeSlash').show();
+        }
+    }</script>
 </body>
 </html>

@@ -4,6 +4,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix('products')->group(function(){
+    Route::get('/',[ProductController::class,'index'])->name('products.index');
+    Route::get('/{id}/addToCart',[ProductController::class,'addToCart'])->name('products.addToCart');
+    Route::get('/{id}/removeItem',[ProductController::class,'removeItem'])->name('products.removeItem');
+    Route::get('/{id}/updateItem/{quantity}',[ProductController::class,'updateItem'])->name('products.updateItem');
+    Route::get('/cart',[ProductController::class,'showCart'])->name('products.cart');
 
+});
 Route::get('/admin/login', [LoginController::class, 'showFormLogin'])->name('login.showFormLogin');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
