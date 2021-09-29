@@ -42,6 +42,7 @@
                                     <th>STT</th>
                                     <th>Tên</th>
                                     <th>Email</th>
+                                    <th>Chức vụ</th>
                                     <th></th>
 
                                 </tr>
@@ -53,10 +54,20 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>
+                                            @if(count($user->roles) > 0)
+                                                @foreach($user->roles as $role)
+                                                    {{ $role->name . ',' }}
+                                                @endforeach
+                                            @else
+                                                {{ 'Chưa phân loại' }}
+                                            @endif
+                                        </td>
+                                        <td>
                                             <a href="{{route('users.edit',['id'=>$user->id])}}"
                                                class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="{{route('users.destroy',['id'=>$user->id])}}"
-                                               onclick="return confirm('Bạn muốn xóa người dùng này?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                               onclick="return confirm('Bạn muốn xóa người dùng này?')"
+                                               class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

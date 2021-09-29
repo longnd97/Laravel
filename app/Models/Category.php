@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
     protected $table = 'categories';
-    function books() {
+
+    function books()
+    {
         return $this->hasMany(Book::class);
+    }
+
+    function totalBook()
+    {
+        return $this->books->count();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\LoginService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,25 @@ class LoginController extends Controller
 
     function login(Request $request)
     {
-        $this->loginService->checkLogin($request);
+        if ($this->loginService->checkLogin($request)) {
+            return redirect()->route('home.index');
+        }
+        return back();
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
+
+    public function showFormChangePassword()
+    {
+        return view('changePassword');
+    }
+
 }

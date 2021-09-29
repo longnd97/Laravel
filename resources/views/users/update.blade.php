@@ -44,6 +44,23 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <lable>Role</lable>
+                                    <strong class="text-danger">*</strong>
+                                    @foreach($roles as $role)
+                                        <div class="form-check">
+                                            <input
+                                                @if($user->checkRole($role->id))
+                                                checked
+                                                @endif
+                                                name="role[{{$role->id}}]" class="form-check-input" type="checkbox"
+                                                value="{{ $role->id }}" id="role-{{$role->id}}">
+                                            <label class="form-check-label" for="role-{{$role->id}}">
+                                                {{ $role->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                                 <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Hủy</button>
                             </form>

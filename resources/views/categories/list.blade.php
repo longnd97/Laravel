@@ -35,6 +35,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên</th>
+                                    <th>So luong sach</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -43,6 +44,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $category->name }}</td>
+                                        <td>{{$category->totalBook()}}</td>
                                         <td>
                                             <a href="{{ route('categories.update', ['id' => $category->id]) }}"
                                                class="btn btn-primary"><i class="fas fa-edit"></i></a>
